@@ -1,6 +1,8 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import AddMovie from "./pages/AddMovie";
+import NavBar from "./components/NavBar";
+import MovieCard from "./components/MovieCard";
 
 function App() {
   return (
@@ -9,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/addmovie" element={<AddMovie />} />
-        <Route path="/movieslist" element={<MoviesList />} />
+        <Route path="/moviecard" element={<MovieCard />} />
       </Routes>
     </>
   );
