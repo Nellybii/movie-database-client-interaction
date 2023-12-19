@@ -4,6 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import MovieCard from "../components/MovieCard";
 import ReviewForm from "../components/ReviewForm";
 
+
 function Home() {
   const [movies, setMovies] = useState([]);
   const [showReviewForm, setShowReviewForm] = useState(false);
@@ -11,17 +12,24 @@ function Home() {
   useEffect(() => {
     const handleFetchData = () => {
       fetch(`${BASE_URL}/movies`)
-        .then((res) => res.json())
-        .then((movies) => setMovies(movies))
-        .catch((err) => console.log(err));
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+          }
+          return res.json();
+        })
+        .then((movies) => {
+          console.log("Movies data:", movies);
+          setMovies(movies);
+        })
+        .catch((err) => console.error("Fetch error:", err));
     };
-
+  
     handleFetchData();
   }, []);
 
   return (
     <Container fluid style={{ backgroundColor: "gray" }}>
-      <Row xs={1} sm={2} md={3} lg={4} className="justify-content-around">
         {movies.map((movie, index) => (
           <Col key={index}>
             <MovieCard
@@ -30,12 +38,13 @@ function Home() {
             />
           </Col>
         ))}
-      </Row>
+  
 
       {showReviewForm && (
         <ReviewForm
+        movieId={yourMovieId} reviewId={yourReviewId}
           onCancel={() => setShowReviewForm(false)}
-          // You can pass other necessary props or callbacks here
+          
         />
       )}
     </Container>

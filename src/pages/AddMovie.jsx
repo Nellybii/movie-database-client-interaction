@@ -37,7 +37,9 @@ export const AddMovie = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        
         setFormData(initialData);
+
         setIsLoading(false);
       })
       .catch((err) => {
@@ -48,16 +50,14 @@ export const AddMovie = () => {
 
   return (
     <Form onSubmit={handleFormSubmit}>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput0">
-        <Form.Label>Image</Form.Label>
-        <Form.Control
-          name="image"
-          placeholder="Image URL"
-          required
-          value={formData['image']}
-          onChange={handleChange}
-        />
-      </Form.Group>
+       <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
+    <Form.Label>Image</Form.Label>
+    <Form.Control
+      placeholder="imageURL"
+      name="image"
+      onChange={handleChange}
+    />
+  </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -114,4 +114,3 @@ export const AddMovie = () => {
 };
 
 export default AddMovie;
-

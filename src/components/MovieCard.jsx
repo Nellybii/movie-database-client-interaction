@@ -1,41 +1,10 @@
+// MovieCard.js
 import React, { useState } from "react";
 import { Card, Row, Button } from "react-bootstrap";
-import ReviewForm from "./ReviewForm";
-import { BASE_URL } from "../utils";
+import ReviewForm from "./ReviewForm";  // Import the ReviewForm component
 
-function MovieCard({
-  image,
-  title,
-  genre,
-  description,
-  runtime,
-  production_date,
-  onReviewClick,
-}) {
+function MovieCard({ image, title, genre, description, runtime, production_date, movieId, reviewId }) {
   const [showReviewForm, setShowReviewForm] = useState(false);
-
-  const handleFormSubmitReview = (formData) => {
-    fetch(`${BASE_URL}/reviews`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Review submitted successfully:", data);
-        setShowReviewForm(false); // Hide the review form after submission
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
-
-  const handleReviewClick = () => {
-    console.log("Review button clicked");
-    setShowReviewForm(true);
-  };
 
   return (
     <div style={{ margin: "20px" }}>
@@ -67,14 +36,15 @@ function MovieCard({
               <Card.Text>
                 <strong>{description}</strong>
               </Card.Text>
-              <Button type="button" onClick={onReviewClick}>
+              <Button type="button" onClick={() => setShowReviewForm(true)}>
                 Review
               </Button>
 
               {showReviewForm && (
                 <ReviewForm
                   onCancel={() => setShowReviewForm(false)}
-                  onSubmit={handleFormSubmitReview}
+                  movieId={movieId}
+                  reviewId={reviewId}
                 />
               )}
             </Card.Body>

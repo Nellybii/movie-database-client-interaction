@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Form, Button } from "react-bootstrap";
 import { BASE_URL } from "../utils";
 
-function ReviewForm({ onCancel, onSubmit }) {
+function ReviewForm({ onCancel, onSubmit,movieId, reviewId }) {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -11,22 +11,29 @@ function ReviewForm({ onCancel, onSubmit }) {
     nationality: "",
     rating: 1,
   });
-
+  const [isLoading, setIsLoading] = useState(false);
+  
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+};
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    setIsLoading(true);
+
+    const data = {
+        ...formData,
+        movie_id: movieId,
+        review_id: reviewId,
+    };
 
     fetch(BASE_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -35,9 +42,9 @@ function ReviewForm({ onCancel, onSubmit }) {
       .catch((error) => {
         console.error('Error:', error);
       });
-
+      setIsLoading(false);
     if (onSubmit) {
-      onSubmit(formData);
+      onSubmit(data);
     }
   };
   return (
@@ -83,8 +90,8 @@ function ReviewForm({ onCancel, onSubmit }) {
         Cancel
       </Button>
 
-      <Button variant="primary" type="submit">
-        Submit
+      <Button variant="primary" type="submit" disabled={isLoading}>
+        {isLoading ? "Submitting..." : "Submit"}
       </Button>
     </Form>
   );
