@@ -28,7 +28,7 @@ export const AddMovie = () => {
 
     setIsLoading(true);
 
-    fetch(`${BASE_URL}/events`, {
+    fetch(`${BASE_URL}/movies`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,9 +37,7 @@ export const AddMovie = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        
         setFormData(initialData);
-
         setIsLoading(false);
       })
       .catch((err) => {
@@ -50,6 +48,16 @@ export const AddMovie = () => {
 
   return (
     <Form onSubmit={handleFormSubmit}>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput0">
+        <Form.Label>Image</Form.Label>
+        <Form.Control
+          name="image"
+          placeholder="Image URL"
+          required
+          value={formData['image']}
+          onChange={handleChange}
+        />
+      </Form.Group>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -106,3 +114,4 @@ export const AddMovie = () => {
 };
 
 export default AddMovie;
+

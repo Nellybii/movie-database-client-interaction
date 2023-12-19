@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import AddMovie from "./pages/AddMovie";
 import NavBar from "./components/NavBar";
 import MovieCard from "./components/MovieCard";
+import ReviewForm from "./components/ReviewForm";
 
 function App() {
   return (
