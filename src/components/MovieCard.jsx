@@ -1,4 +1,4 @@
-// MovieCard.js
+
 import React from "react";
 import { Card, Row, Button } from "react-bootstrap";
 
