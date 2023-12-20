@@ -9,7 +9,7 @@ function NavBar() {
       <Container>
         <Navbar.Brand as={Link} to="/" style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>Home</Navbar.Brand>
         <Navbar.Brand as={Link} to="/addmovie" style={{ paddingLeft: '1rem', paddingRight: '1rem' }} >AddMovie</Navbar.Brand>
-        <Navbar.Brand as={Link} to="/reviewform" style={{ paddingLeft: '1rem', paddingRight: '1rem' }} >ReviewForm</Navbar.Brand>
+        
       </Container>
     </Navbar>
   );

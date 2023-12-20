@@ -4,7 +4,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import MovieCard from "../components/MovieCard";
 import ReviewForm from "../components/ReviewForm";
 
-
 function Home() {
   const [movies, setMovies] = useState([]);
   const [showReviewForm, setShowReviewForm] = useState(false);
@@ -24,31 +23,29 @@ function Home() {
         })
         .catch((err) => console.error("Fetch error:", err));
     };
-  
+
     handleFetchData();
   }, []);
 
   return (
-    <Container fluid style={{ backgroundColor: "gray" }}>
+    <div className="container text-center">
+      <div className="row" style={{ display: "flex" }}>
         {movies.map((movie, index) => (
-          <Col key={index}>
+          <div className="col" key={index}>
             <MovieCard
               {...movie}
-              onReviewClick={() => setShowReviewForm(true)}
+              onReviewClick={() => setShowReviewForm(movie.id)}
             />
-          </Col>
+            {showReviewForm === movie.id && (
+              <ReviewForm
+                onCancel={() => setShowReviewForm(null)}
+                movieId={movie.id}
+              />
+            )}
+          </div>
         ))}
-  
-
-      {showReviewForm && (
-        <ReviewForm
-        movieId={yourMovieId} reviewId={yourReviewId}
-          onCancel={() => setShowReviewForm(false)}
-          
-        />
-      )}
-    </Container>
+      </div>
+    </div>
   );
 }
-
 export default Home;

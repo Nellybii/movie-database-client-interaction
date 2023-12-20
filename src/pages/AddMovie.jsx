@@ -11,6 +11,7 @@ export const AddMovie = () => {
     description: '',
     runtime: '',
     production_date: '',
+    reviews:'',
   };
 
   const [formData, setFormData] = useState(initialData);
@@ -49,8 +50,8 @@ export const AddMovie = () => {
   };
 
   return (
-    <Form onSubmit={handleFormSubmit}>
-       <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
+    <Form onSubmit={handleFormSubmit} style={{textAlign: "center", width:"100%"}} >
+       <Form.Group className="mb-3" controlId="exampleForm.ControlInput4" style={{padding:"5px", margin:"5px"}}>
     <Form.Label>Image</Form.Label>
     <Form.Control
       placeholder="imageURL"
@@ -58,7 +59,7 @@ export const AddMovie = () => {
       onChange={handleChange}
     />
   </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" style={{padding:"5px", margin:"5px"}}>
         <Form.Label>Title</Form.Label>
         <Form.Control
           name="title"
@@ -68,7 +69,7 @@ export const AddMovie = () => {
           onChange={handleChange}
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput2" style={{padding:"5px", margin:"5px"}}>
         <Form.Label>Genre</Form.Label>
         <Form.Control
           name="genre"
@@ -78,7 +79,7 @@ export const AddMovie = () => {
           onChange={handleChange}
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" style={{padding:"5px", margin:"5px"}}>
         <Form.Label>Description</Form.Label>
         <Form.Control
           name="description"
@@ -88,7 +89,7 @@ export const AddMovie = () => {
           onChange={handleChange}
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea2">
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea2" style={{padding:"5px", margin:"5px"}}>
         <Form.Label>Runtime</Form.Label>
         <Form.Control
           name="runtime"
@@ -98,7 +99,7 @@ export const AddMovie = () => {
           onChange={handleChange}
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea3">
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea3" style={{padding:"5px", margin:"5px"}}>
         <Form.Label>Production Date</Form.Label>
         <Form.Control
           name="production_date"

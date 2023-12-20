@@ -1,56 +1,29 @@
 // MovieCard.js
-import React, { useState } from "react";
+import React from "react";
 import { Card, Row, Button } from "react-bootstrap";
-import ReviewForm from "./ReviewForm";  // Import the ReviewForm component
 
-function MovieCard({ image, title, genre, description, runtime, production_date, movieId, reviewId }) {
-  const [showReviewForm, setShowReviewForm] = useState(false);
-
+function MovieCard({
+  image,
+  title,
+  genre,
+  description,
+  runtime,
+  production_date,
+  onReviewClick,
+}) {
   return (
-    <div style={{ margin: "20px" }}>
-      <Row xs={1} md={2} className="g-4">
-        <div style={{ margin: "3px" }}>
-          <Card
-            style={{
-              width: "20rem",
-              margin: "3px",
-              height: "33rem",
-              border: "solid",
-              padding: "3px",
-            }}
-          >
-            <Card.Img width={"200px"} height={"200px"} src={image} alt="" />
-            <Card.Body>
-              <h4>
-                <strong>{title}</strong>
-              </h4>
-              <h6>
-                <strong>{genre}</strong>
-              </h6>
-              <h6>
-                <strong>{runtime}</strong>
-              </h6>
-              <h6>
-                <strong>{production_date}</strong>
-              </h6>
-              <Card.Text>
-                <strong>{description}</strong>
-              </Card.Text>
-              <Button type="button" onClick={() => setShowReviewForm(true)}>
-                Review
-              </Button>
-
-              {showReviewForm && (
-                <ReviewForm
-                  onCancel={() => setShowReviewForm(false)}
-                  movieId={movieId}
-                  reviewId={reviewId}
-                />
-              )}
-            </Card.Body>
-          </Card>
-        </div>
-      </Row>
+    <div className="card" style={{ width: "18rem", padding:"2px", margin:"2px", border:"solid", height:"25rem"}}>
+      <img src={image} className="card-img-top" alt={title} style={{height:"100px"}}/>
+      <div className="card-body">
+        <h5 className="card-title">{title}</h5>
+        <p className="card-text">{genre}</p>
+        <p className="card-text">{runtime}</p>
+        <p className="card-text">{production_date}</p>
+        <p className="card-text">{description}</p>
+        <Button type="button" onClick={onReviewClick}>
+          Review
+        </Button>
+      </div>
     </div>
   );
 }

@@ -48,7 +48,7 @@ function ReviewForm({ onCancel, onSubmit,movieId, reviewId }) {
     }
   };
   return (
-    <Form onSubmit={handleFormSubmit}>
+    <Form onSubmit={handleFormSubmit} style={{display:"center", marginTop:"20px"}}>
       <Form.Group className="mb-3" controlId="formFirstName">
         <Form.Label>First Name</Form.Label>
         <Form.Control type="text" placeholder="Enter first name" name="firstName"
